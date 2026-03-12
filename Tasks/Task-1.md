@@ -1,8 +1,7 @@
 # Task 1
 
 ## GitHub
-'
-  * [ ] Create directory Dev
+  * [ ] Create directory Dev in environments Repo
 
 ## AWS
 
