@@ -16,7 +16,7 @@
 
   * [x] Define an AWS TF provider in a separate file 'providers.tf'
   * [x] Define required version for AWS Provider with major version of 6 and minor to be the latest
-  * [ ] Region defined in a provider to be a variable (set validation rule for the variable, so only EU region can be used)
+  * [x] Region defined in a provider to be a variable (set validation rule for the variable, so only EU region can be used)
   * [x] Setup provider to assume Admin role in Dev account
   * [x] Setup default Tag on a provider level: Terraform=true
 
@@ -33,4 +33,4 @@
   * [x] NAT GW to be attached to a VPC
   * [x] Tags to be placed in 'locals', and contain 2 key-value pairs: Name, Environment
   * [x] Route tables to have necessary routes for resources placed in Public and Private subnets to have access to the Internet (Private instances shouldn't be accessible FROM the Internet)
-  * [ ] Add VPC ID and subnet CIDRs to outputs. Outputs to have description section
+  * [x] Add VPC ID and subnet CIDRs to outputs. Outputs to have description section
