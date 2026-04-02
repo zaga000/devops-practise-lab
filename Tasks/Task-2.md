@@ -2,18 +2,18 @@
 
 ## GitHub
 
-- [ ] Create repository `terraform-aws-vpc`
-- [ ] `main` branch to be used as a default one
+- [x] Create repository `terraform-aws-vpc`
+- [x] `main` branch to be used as a default one
 
 ## Terraform
 
 ### Modules repo
 
-- [ ] Move all the code related to VPC from 'environments' repository to `terraform-aws-vpc`
-- [ ] Replace subnet CIDRs definition with a function 'cidrsubnet'. Numer of subnets has to be the same
-- [ ] Inspect usage of **heredocs** for variables descriptions for multiline definitions and use them in the module
-- [ ] Add a mandatory tag from a module `Module="VPC"`
-- [ ] Tag main branch in the repository with `v0.0.1`
+- [x] Move all the code related to VPC from 'environments' repository to `terraform-aws-vpc`
+- [x] Replace subnet CIDRs definition with a function 'cidrsubnet'. Numer of subnets has to be the same
+- [x] Inspect usage of **heredocs** for variables descriptions for multiline definitions and use them in the module
+- [x] Add a mandatory tag from a module `Module="VPC"`
+- [x] Tag main branch in the repository with `v0.0.1`
 
 ### Environments repo
 
