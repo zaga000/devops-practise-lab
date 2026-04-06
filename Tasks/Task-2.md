@@ -17,15 +17,15 @@
 
 ### Environments repo
 
-- [ ] Call the VPC Module from the Dev environment configuration, with a version definition
-- [ ] Add provisioner to the configuration which will call AWS API via aws cli and output the list of VPCs in the account to a file 'vpcs.txt'
-- [ ] Add another provisioner will output all subnet CIDRs to a file 'subnets.txt' by using 'self' object
-- [ ] Add another provisioner which will delete a local file 'vpcs.txt' when the VPC is destroyed
-- [ ] Deploy an S3 bucket from a public module (with the bare minimum configuration)
+- [x] Call the VPC Module from the Dev environment configuration, with a version definition
+- [x] Add provisioner to the configuration which will call AWS API via aws cli and output the list of VPCs in the account to a file 'vpcs.txt'
+- [x] Add another provisioner will output all subnet CIDRs to a file 'subnets.txt' by using 'self' object
+- [x] Add another provisioner which will delete a local file 'vpcs.txt' when the VPC is destroyed
+- [x] Deploy an S3 bucket from a public module (with the bare minimum configuration)
 
 Optional:
 
-- [ ] Call a module one more time, but define VPC Configuration in a format below and read it from a local file `vpc.json`:
+- [x] Call a module one more time, but define VPC Configuration in a format below and read it from a local file `vpc.json`:
 
 ```json
 {
@@ -52,9 +52,9 @@ Optional:
 }
 ```
 
-- [ ] Create a variable `vpcs` with a type of `map(list(object({})))` and define all the fields required to be presented in the object following the JSON above
-- [ ] Define the value for `vpcs` variable in the *.tfvars file according to the JSON above
-- [ ] Try to omit one of the fields, i.e. `cidr_block` and check how Terraform will react on it
-- [ ] Make this filed optional in the variable definition like in the [example here](https://spacelift.io/blog/terraform-optional-variable)
-- [ ] Add an output with all VPC Private Subnets CIDRs
-- [ ] Try to define '0' for public subnets and run `terraform plan/apply` to see how Terraform will react on it
+- [x] Create a variable `vpcs` with a type of `map(list(object({})))` and define all the fields required to be presented in the object following the JSON above
+- [x] Define the value for `vpcs` variable in the *.tfvars file according to the JSON above
+- [x] Try to omit one of the fields, i.e. `cidr_block` and check how Terraform will react on it
+- [x] Make this filed optional in the variable definition like in the [example here](https://spacelift.io/blog/terraform-optional-variable)
+- [x] Add an output with all VPC Private Subnets CIDRs
+- [x] Try to define '0' for public subnets and run `terraform plan/apply` to see how Terraform will react on it
