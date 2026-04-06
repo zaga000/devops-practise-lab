@@ -12,6 +12,8 @@
 
 - [ ] Inspect terraform `taint` command. Can be useful for partially created Kubernetes resources
 - [ ] Inspect terraform `import` command. Create a one more VPC manually, and import it to the state
+- [ ] Create terraform code for imported VPC, so terraform will not delete and change it
+----------------------------------------------
 - [ ] Inspect terraform `workspace` command.
 - [ ] Create new workspaces 'dev1' and 'dev2'
 - [ ] Redesign a code to include workspace name in the `Name` tag of VPC resources
