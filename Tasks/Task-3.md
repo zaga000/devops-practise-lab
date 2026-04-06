@@ -6,6 +6,7 @@
 - [ ] Implement .pre-commit-config.yaml in 'environments' repository
   - [ ] Add 'terraform_fmt' hook
   - [ ] Add 'terraform_validate' hook
+- [ ] Investigate pre-commit command running on-demand and then build it into commit flow so it will be run automatically 
 
 ## Terraform
 
