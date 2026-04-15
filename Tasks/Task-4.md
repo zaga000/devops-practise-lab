@@ -10,4 +10,9 @@
     - Terraform fmt
     - Terraform validate
     - Terraform plan
+    - TErrafrom apply (with manual confirmation)
     - This pipeline to be triggered after PR is merged
+
+- [ ] Setup one more pipeline with will:
+    - Run terraform destroy
+    - Pipeline to be triggered manually
