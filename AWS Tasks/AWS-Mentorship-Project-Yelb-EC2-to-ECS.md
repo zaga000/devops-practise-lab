@@ -213,6 +213,7 @@ Each phase has a **Goal**, a **Checklist**, a **Definition of Done (DoD)**, and 
 - [ ] Set up **Terraform workspaces** (`dev`, `prod`) and `env/dev.tfvars` + `env/prod.tfvars` (region, CIDRs, instance sizes, env name).
 - [ ] Turn on **AWS Budgets** alarms (\$5 / \$20) in both accounts.
 - [ ] Decide and document the **tagging standard**.
+> **Q for review:** add a Makefile wrapping `terraform plan/apply -var-file=env/dev.tfvars` etc., since config is split per environment? Proposing this as a Phase 0 tooling item, not gating Phase 1 DoD.
 
 **DoD:** `terraform init` succeeds against the S3 backend in the Dev workspace; a trivial resource (e.g. an SSM parameter) can be applied and destroyed; budgets are live.
 
@@ -233,7 +234,9 @@ Each phase has a **Goal**, a **Checklist**, a **Definition of Done (DoD)**, and 
 - [ ] NAT (managed **single** NAT *or* a NAT instance — see cost guardrails) + private route table. Make the NAT toggleable via a variable so you can destroy it between sessions.
 - [ ] **S3 Gateway VPC endpoint** attached to the private + DB route tables (requirement #6).
 - [ ] Security groups: ALB SG (80/443 from internet), app SG (80/4567 from ALB SG; 6379 internal), DB SG (5432 from app SG only).
+> **Q for review:** where should SGs live — inside the `vpc` module, or a separate `security-groups` submodule? Leaning toward inside `vpc`, since ASG/ALB/RDS modules will consume SG ids via outputs.
 - [ ] (Recommended) **VPC Flow Logs** → CloudWatch Logs or S3 (via the new Gateway endpoint) for later analysis.
+> **Q for review:** Flow Logs — own file (`modules/vpc/flow-logs.tf`) instead of inline in `main.tf`? Destination — CloudWatch Logs or S3? Leaning S3 via the Gateway endpoint for cost, toggled with an `enable_flow_logs` variable.
 
 **DoD:** `terraform apply` in Dev creates the VPC; an instance in a private subnet can `aws s3 ls` **without** a NAT route (proves the Gateway endpoint works); DB subnet has no route to the internet.
 
@@ -249,6 +252,7 @@ Each phase has a **Goal**, a **Checklist**, a **Definition of Done (DoD)**, and 
 - [ ] Provision the **database tier**: RDS PostgreSQL `db.t3.micro` (free tier) in the DB subnets with a subnet group — *recommended* — **or** a self-managed Postgres container on an instance in the DB subnet (cheapest). Load the yelb schema.
 - [ ] Write an **ASG + Launch Template** module: `t3.micro`, private app subnets, min/desired/max (e.g. 2/2/4).
 - [ ] **User data script** that on boot: installs Docker, pulls/builds the yelb-ui, yelb-appserver, and redis containers (or installs them directly), wires the appserver to the RDS endpoint and redis, and starts them. (Pass config via user data / SSM Parameter Store, not hard-coded.)
+> **Q for review:** attach an IAM instance profile with `AmazonSSMManagedInstanceCore` for Session Manager access, instead of opening SSH in the app SG? Avoids a bastion/key pair entirely.
 - [ ] Create the **ALB** + target group (health check on the UI) + listener; register the ASG with the target group.
 - [ ] Confirm the app is reachable through the ALB DNS name and votes/page-views work end to end.
 - [ ] Add a **target-tracking scaling policy** on CPU (e.g. 50%) so the ASG can scale out under load (used in Phase 5).
